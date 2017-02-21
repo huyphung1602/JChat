@@ -1,13 +1,18 @@
 <h1>JChat</h1>
 
-<form class="ui form">
-  <div class="field">
-    <label>First Name</label>
-    <input type="text" name="first-name" placeholder="First Name">
+<div class="ui form grid">
+  <div class="six wide column">
+  <%= form_for @user do |f| %>
+    <div class="field" >
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: 'Your Email' %>
+    </div>
+    <div class="field" >
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: 'Your password' %>
+    </div>
+    <%= f.submit 'Sign In', class: 'ui violet button' %>
+    <%= link_to 'Sign Up', new_user_path, class: 'ui green button' %>
+  <% end %>
   </div>
-  <div class="field">
-    <label>Last Name</label>
-    <input type="text" name="last-name" placeholder="Last Name">
-  </div>
-  <button class="ui button" type="submit">Submit</button>
-</form>
+</div>

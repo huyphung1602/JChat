@@ -1,0 +1,43 @@
+<h1>Sign Up</h1>
+
+<div class="ui form grid">
+  <div class="six wide column">
+  <%= form_for @user do |f| %>
+    <% if @user.errors.size > 0 %>
+      <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+          <%= @user.errors.full_messages.to_sentence %>
+        </div>
+      </div>
+    <% end %>
+    <div class="field" >
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: 'Fill your name here' %>
+    </div>
+
+    <div class="field" >
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: 'Fill your email here' %>
+    </div>
+
+    <div class="field" >
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: 'Fill your password here' %>
+    </div>
+
+    <%= f.submit 'Create Account', class: 'ui green button' %>
+  <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+</script>

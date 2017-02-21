@@ -1,18 +1,36 @@
-<h1>JChat</h1>
+<div class="ui grid">
+  <div class="row">
+    <div class="four wide column"></div>
 
-<div class="ui form grid">
-  <div class="six wide column">
-  <%= form_for @user do |f| %>
-    <div class="field" >
-      <%= f.label :email %>
-      <%= f.text_field :email, placeholder: 'Your Email' %>
+    <div class="eight wide column">
+      <%= flash_messages %>
     </div>
-    <div class="field" >
-      <%= f.label :password %>
-      <%= f.password_field :password, placeholder: 'Your password' %>
+
+    <div class="four wide column"></div>
+  </div>
+
+  <div class="row">
+    <div class="four wide column"></div>
+
+    <div class="center aligned eight wide column">
+      <h1 class="ui violet header">JChat</h1><br>
+      <img class="ui fluid image" src="http://i.imgur.com/pFHMJMQ.jpg"><br><br>
+      
+      <%= link_to 'Sign In', new_session_path, class: 'ui violet button' %>
+      <%= link_to 'Sign Up', new_user_path, class: 'ui green button' %>
     </div>
-    <%= f.submit 'Sign In', class: 'ui violet button' %>
-    <%= link_to 'Sign Up', new_user_path, class: 'ui green button' %>
-  <% end %>
+
+    <div class="four wide column"></div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+</script>

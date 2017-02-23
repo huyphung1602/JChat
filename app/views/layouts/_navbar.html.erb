@@ -8,4 +8,20 @@
   <a class="item">
     Friends
   </a>
+  <% if !signed_in? %>
+    <a class="item", href="<%= new_session_path %>">
+      Sign In
+    </a>
+    <a class="item", href="<%= new_user_path %>">
+      Sign Up
+    </a>
+  <% end %>
+  <div class="right menu">
+    <% if signed_in? %>
+      <a class="item">
+        Signed in as <%= current_user %>
+      </a>
+      <%= link_to "Log Out", log_out_path, method: 'delete', class: 'item' %>
+    <% end %>
+  </div>
 </div><br>

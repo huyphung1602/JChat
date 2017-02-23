@@ -1,0 +1,22 @@
+<h1>Inbox</h1>
+
+<% if @messages.empty? %>
+  <div class="ui warning message">"Aww, No messages, No friends?"</div>
+<% end %>
+
+<table class="ui violet table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Subject</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.sender || "Nobody but chat bot" %></td>
+        <td><%= message.subject %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

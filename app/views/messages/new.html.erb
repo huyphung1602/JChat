@@ -1,0 +1,36 @@
+<div class="ui form grid">
+  <div class="five wide column"></div>
+
+  <div class="six wide column">
+    <h1 class="ui center aligned violet header">New Message</h1><br>   
+    <%= form_for @message do |f| %>
+      <div class="field" >
+        <%= f.select :recipient_id, @users.map{|u| [u.email, u.id]} %>
+      </div>
+
+      <div class="field" >
+        <%= f.text_field :subject, placeholder: 'Subject' %>
+      </div>
+
+      <div class="field" >
+        <%= f.text_area :body %>
+      </div>
+
+      <br>
+      <%= f.submit 'Send Message', class: 'ui green button' %>
+    <% end %>
+  </div>
+
+  <div class="five wide column"></div>
+</div>
+
+<script type="text/javascript">
+  $('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+</script>

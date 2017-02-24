@@ -1,5 +1,6 @@
 <h1>Inbox</h1>
 
+<%= flash_messages %>
 <% if @messages.empty? %>
   <div class="ui warning message">"Aww, No messages, No friends?"</div>
 <% end %>
@@ -9,14 +10,64 @@
     <tr>
       <th>Name</th>
       <th>Subject</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.sender || "Nobody but chat bot" %></td>
-        <td><%= message.subject %></td>
+        <% if message.read? %>
+          <td><%= message.sender || "Nobody but chat bot" %></td>
+          <td><%= message.subject %></td>
+        <% else %>
+          <td><strong><%= message.sender || "Nobody but chat bot" %></strong></td>
+          <td><strong><%= message.subject %></strong></td>
+        <% end %>
+        <td><%= link_to 'Show', messages_path(message_id: message.id), class: 'ui approve violet button' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<% if params[:message_id] %>
+  <div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Message from <%= @current_message.sender %>
+    </div>
+
+    <div class="content">
+      <div class="description">
+        <div class="ui header"><%= @current_message.subject %></div>
+        <p><%= @current_message.body %></p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= link_to 'Close', messages_path, class: 'ui black deny button' %>
+      <%= link_to 'Reply', messages_path, class: 'ui positive right button'%>
+    </div>
+
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('.ui.modal').modal({
+    onHidden : function(){
+      window.location.href = "/messages";
+    },
+    onApprove : function() {
+    }
+  }).modal('show');
+</script>
+
+<script type="text/javascript">
+  $('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+</script>

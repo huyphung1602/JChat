@@ -4,17 +4,7 @@
   <div class="six wide column">
     <%= flash_messages %>
     <h1 class="ui center aligned violet header">Sign In</h1><br>
-    <%= form_tag sessions_path do %>
-      <div class="field" >
-        <%= text_field_tag :email, params[:email], placeholder: 'Fill your email here' %>
-      </div>
-
-      <div class="field" >
-        <%= password_field_tag :password, nil, placeholder: 'Fill your password here' %>
-      </div>
-
-      <%= submit_tag "Let's chat", class: 'ui green button', data: {disable_with: "Signing in..."} %>
-    <% end %>
+    <%= render 'sessions/form' %>
   </div>
 
   <div class="five wide column"></div>

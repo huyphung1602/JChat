@@ -19,8 +19,8 @@
           <tr>
             <th class="three wide column">Recipient</th>
             <th class="three wide column">Subject</th>
-            <th class="three wide column">Read at</th>
             <th class="three wide column">Created at</th>
+            <th class="three wide column">Read at</th>
           </tr>
         </thead>
         <tbody>
@@ -40,7 +40,16 @@
             </tr>
           <% end %>
         </tbody>
-      </table> 
+      </table>
+
+      <% if @messages.empty? %>
+        <div class="ui warning message">
+          <div class="header">
+            "Send some one a message. No friends?"
+          </div>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </div>

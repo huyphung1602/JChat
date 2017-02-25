@@ -18,8 +18,8 @@
       <table class="ui violet table">
         <thead>
           <tr>
-            <th class="nine wide column">Name</th>
-            <th class="three wide column"></th>
+            <th class="eight wide column">Name</th>
+            <th class="four wide column"></th>
           </tr>
         </thead>
         <tbody>
@@ -27,7 +27,10 @@
             <% if !user.inverse_friends.find_by_id(current_user.id) %>
               <tr>
                 <td><%= user.name %></td>
-                <td><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %></td>
+                <td class="right aligned">
+                  <%= link_to "Accept", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %>
+                  <%= link_to "Decline", unfriend_path(:friend_id => user), :method => :delete, class: 'ui negative button' %>
+                </td>
               </tr>
             <% end %>
           <% end %>

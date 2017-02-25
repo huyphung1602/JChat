@@ -18,10 +18,9 @@
       <table class="ui violet table">
         <thead>
           <tr>
-            <th class="four wide column">Name</th>
-            <th class="four wide column">Email</th>
-            <th class="three wide column"></th>
-            <th class="one wide column"></th>
+            <th class="three wide column">Name</th>
+            <th class="three wide column">Email</th>
+            <th class="six wide column"></th>
           </tr>
         </thead>
         <tbody>
@@ -30,8 +29,10 @@
               <tr>
                 <td><%= friend.name %></td>
                 <td><%= friend.email %></td>
-                <td class="right aligned"><%= link_to 'Send Message', new_message_path(email: friend.email), class: 'ui violet button' %></td>
-                <td><%= link_to "Unfriend", unfriend_path(:friend_id => friend), :method => :delete, class: 'ui negative button' %></td>
+                <td class="right aligned">
+                  <%= link_to 'Send Message', new_message_path(email: friend.email), class: 'ui violet button' %>
+                  <%= link_to "Unfriend", unfriend_path(:friend_id => friend), :method => :delete, class: 'ui negative button' %>
+                </td>
               </tr>
             <% end %>
           <% end %>

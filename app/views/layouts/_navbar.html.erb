@@ -1,14 +1,18 @@
 <div class="ui top violet inverted menu">
-  <a class="item", href="<%= root_path %>" >
-    Home
-  </a>
-  <a class="item", href="<%= users_path %>">
-    Friendships
-  </a>
-  <a class="item", href="<%= new_message_path %>">
-    Send Message
-  </a>
-  <% if !signed_in? %>
+  <% if signed_in? %>
+    <a class="item", href="<%= messages_path %>" >
+      Inbox
+    </a>
+    <a class="item", href="<%= users_path %>">
+      Friendships
+    </a>
+    <a class="item", href="<%= new_message_path %>">
+      Send Message
+    </a>
+  <% else %>
+    <a class="item", href="<%= root_path %>" >
+      Home
+    </a>
     <a class="item", href="<%= new_session_path %>">
       Sign In
     </a>

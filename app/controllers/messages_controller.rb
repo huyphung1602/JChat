@@ -1,13 +1,13 @@
 class MessagesController < ApplicationController
   def index
     @at_inbox = true
-    @messages = current_user.received_messages
+    @messages = current_user.received_messages.order("created_at DESC")
     @unread_received_messages = current_user.received_messages.unread.count
     @unread_sent_messages = current_user.sent_messages.unread.count
   end
 
   def sent_messages
-    @messages = current_user.sent_messages
+    @messages = current_user.sent_messages.order("created_at DESC")
     @unread_received_messages = current_user.received_messages.unread.count
     @unread_sent_messages = current_user.sent_messages.unread.count
   end

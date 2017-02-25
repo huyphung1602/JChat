@@ -26,14 +26,18 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.find_by_friend_id(params[:friend_id])
     @inverse_friendship = current_user.inverse_friendships.find_by_user_id(params[:friend_id])
 
-    if @inverse_friendship.present?
+    if @inverse_friendship.present? && @friendship.present?
       @friendship.destroy
       @inverse_friendship.destroy
       flash[:info] = "Unfriend successfully."
       redirect_to all_friends_path
-    else
+    elsif @friendship.present?
       @friendship.destroy
       flash[:info] = "Friend request is canceled."
+      redirect_to users_path
+    else
+      @inverse_friendship.destroy
+      flash[:info] = "Decline friend request."
       redirect_to users_path
     end
   end

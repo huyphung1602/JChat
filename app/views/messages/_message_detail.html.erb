@@ -13,7 +13,7 @@
 <div class="actions">
   <%= link_to 'Close', messages_path, class: 'ui black deny button' %>
   <a class="ui positive right labeled icon button" href="<%= new_message_path(email: @message.sender.email) %>">
-    <i class="right mail icon"></i>
+    <i class="reply icon"></i>
     Reply
   </button>
 </div>

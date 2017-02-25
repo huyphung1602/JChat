@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   delete 'log_out' => 'sessions#destroy'
   get 'all_friends' => 'users#all_friends'
   delete 'unfriend' => 'friendships#destroy'
+  get 'sent_messages' => 'messages#sent_messages'
 end

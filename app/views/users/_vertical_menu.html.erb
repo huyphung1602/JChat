@@ -1,0 +1,25 @@
+<div class="ui violet large vertical menu">
+  <% if @active_all_friends.present? %>
+    <a class="item" href="/users">
+      Find friend
+      <% if @number_of_friend_requests > 0 %>
+        <div class="floating ui red label"><%= @number_of_friend_requests %></div>
+      <% end %>
+    </a>
+    <a class="active item" href="/all_friends">
+      <strong>Friends</strong>
+      <div class="ui violet left pointing label"><%= @number_of_friends %></div>
+    </a>
+  <% else %>
+    <a class="active item" href="/users">
+      <strong>Find friend</strong>
+      <% if @number_of_friend_requests > 0 %>
+        <div class="floating ui red label"><%= @number_of_friend_requests %></div>
+      <% end %>
+    </a>
+    <a class="item" href="/all_friends">
+      Friends
+      <div class="ui label"><%= @number_of_friends %></div>
+    </a>
+  <% end %>
+</div>

@@ -1,0 +1,18 @@
+<%= form_tag messages_path do %>
+  <div class="field" >
+    <%= text_field_tag :email, params[:email], 
+                               placeholder: 'Recipient email',
+                               value: @email
+     %>
+  </div>
+
+  <div class="field" >
+    <%= text_field_tag :subject, params[:subject], placeholder: 'Subject' %>
+  </div>
+
+  <div class="field" >
+    <%= text_area_tag :body, params[:body], placeholder: 'Content' %>
+  </div>
+
+  <%= submit_tag "Send Message", class: 'ui green button', data: {disable_with: "Sending..."} %>
+<% end %>

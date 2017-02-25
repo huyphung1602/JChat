@@ -1,11 +1,9 @@
-<%= flash_messages %>
-
 <div class="ui grid">
   <div class="row">
     <div class="four wide column"></div>
 
     <div class="twelve wide column">
-      <h1>Inbox</h1>
+      <h1>Sent Messages</h1>
     </div>
   </div>
 
@@ -16,36 +14,29 @@
 
     <div class="twelve wide column">
 
-      <% if @messages.empty? %>
-        <div class="ui warning message">"Aww, No messages, No friends?"</div>
-      <% end %>
-
       <table class="ui violet table">
         <thead>
           <tr>
-            <th class="three wide column">Sender</th>
+            <th class="three wide column">Recipient</th>
             <th class="three wide column">Subject</th>
-            <th class="three wide column">Received at</th>
-            <th class="three wide column"></th>
+            <th class="three wide column">Read at</th>
+            <th class="three wide column">Created at</th>
           </tr>
         </thead>
         <tbody>
           <% @messages.each do |message| %>
             <tr>
               <% if message.read? %>
-                <td><%= message.sender || "Nobody but chat bot" %></td>
+                <td><%= message.recipient || "Nobody but chat bot" %></td>
                 <td><%= message.subject %></td>
                 <td><%= message.created_at.strftime("%e %b %Y %H:%M%p") %></td>
+                <td><%= message.read_at.strftime("%e %b %Y %H:%M%p") %></td>
               <% else %>
-                <td><strong><%= message.sender || "Nobody but chat bot" %></strong></td>
+                <td><strong><%= message.recipient || "Nobody but chat bot" %></strong></td>
                 <td><strong><%= message.subject %></strong></td>
                 <td><strong><%= message.created_at.strftime("%e %b %Y %H:%M%p") %></strong></td>
+                <td><strong>Unread</strong></td>
               <% end %>
-              <td class="right aligned"><%= link_to 'Check it', message_path(message), 
-                      class: 'ui approve violet button show_modal', 
-                      remote:true %>
-                            
-              </td>
             </tr>
           <% end %>
         </tbody>
@@ -53,14 +44,3 @@
     </div>
   </div>
 </div>
-
-<div class="ui small modal" id="message_detail" >
-   
-</div>
-
-<script type="text/javascript">
-  $("#message_detail").modal();
-  $(".show_modal").click(function() {
-    $("#message_detail").modal("show");
-  })
-</script>

@@ -1,62 +1,79 @@
 <%= flash_messages %>
 
-<h1>Friend request</h1>
+<div class="ui grid">
+  <div class="row">
+    <div class="four wide column"></div>
 
-<table class="ui violet table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @friend_requests.each do |user| %>
-      <% if !user.inverse_friends.find_by_id(current_user.id) %>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+    <div class="twelve wide column">
+      <h1>Friend requests</h1>
+    </div>
+  </div>
 
-<h1>People you may know</h1>
+  <div class="row">
+    <div class="four wide column">
+      <%= render 'users/vertical_menu' %>
+    </div>
 
-<table class="ui violet table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <% if !user.friends.find_by_id(current_user.id) %>
-        <% if user != current_user %>
+    <div class="twelve wide column">
+      <table class="ui violet table">
+        <thead>
           <tr>
-            <td><%= user.name %></td>
-
-            <% if !user.inverse_friends.find_by_id(current_user.id) %>
-              <td><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %></td>
-            <% else %>
-              <td><%= link_to "Cancel friend request", unfriend_path(:friend_id => user), :method => :delete, class: 'ui button' %></td>
-            <% end %>
-
+            <th class="nine wide column">Name</th>
+            <th class="three wide column"></th>
           </tr>
-        <% end %>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+        </thead>
+        <tbody>
+          <% @friend_requests.each do |user| %>
+            <% if !user.inverse_friends.find_by_id(current_user.id) %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<script type="text/javascript">
-  $('.message .close')
-  .on('click', function() {
-    $(this)
-      .closest('.message')
-      .transition('fade')
-    ;
-  })
-;
-</script>
+  <div class="row">
+    <div class="four wide column"></div>
+
+    <div class="twelve wide column">
+      <h1>People you may know</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="four wide column"></div>
+
+    <div class="twelve wide column">
+      <table class="ui violet table">
+        <thead>
+          <tr>
+            <th class="nine wide column">Name</th>
+            <th class="three wide column"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <% if !user.friends.find_by_id(current_user.id) %>
+              <% if user != current_user %>
+                <tr>
+                  <td><%= user.name %></td>
+
+                  <% if !user.inverse_friends.find_by_id(current_user.id) %>
+                    <td class="right aligned"><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %></td>
+                  <% else %>
+                    <td class="right aligned"><%= link_to "Cancel friend request", unfriend_path(:friend_id => user), :method => :delete, class: 'ui button' %></td>
+                  <% end %>
+
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

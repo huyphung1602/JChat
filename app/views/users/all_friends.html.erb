@@ -1,37 +1,42 @@
 <%= flash_messages %>
 
-<h1>Friends</h1>
+<div class="ui grid">
+  <div class="row">
+    <div class="four wide column"></div>
 
-<table class="ui violet table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @friends.each do |friend| %>
-      <% if friend.friends.find_by_id(current_user.id) %>
-        <tr>
-          <td><%= friend.name %></td>
-          <td><%= friend.email %></td>
-          <td><%= link_to 'Send Message', new_message_path, class: 'ui violet button' %></td>
-          <td><%= link_to "Unfriend", unfriend_path(:friend_id => friend), :method => :delete, class: 'ui negative button' %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+    <div class="twelve wide column">
+      <h1>Friends</h1>
+    </div>
+  </div>
 
-<script type="text/javascript">
-  $('.message .close')
-  .on('click', function() {
-    $(this)
-      .closest('.message')
-      .transition('fade')
-    ;
-  })
-;
-</script>
+  <div class="row">
+    <div class="four wide column">
+      <%= render 'users/vertical_menu' %>
+    </div>
+
+    <div class="twelve wide column">
+      <table class="ui violet table">
+        <thead>
+          <tr>
+            <th class="four wide column">Name</th>
+            <th class="four wide column">Email</th>
+            <th class="three wide column"></th>
+            <th class="one wide column"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @friends.each do |friend| %>
+            <% if friend.friends.find_by_id(current_user.id) %>
+              <tr>
+                <td><%= friend.name %></td>
+                <td><%= friend.email %></td>
+                <td class="right aligned"><%= link_to 'Send Message', new_message_path(email: friend.email), class: 'ui violet button' %></td>
+                <td><%= link_to "Unfriend", unfriend_path(:friend_id => friend), :method => :delete, class: 'ui negative button' %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

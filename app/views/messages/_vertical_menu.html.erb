@@ -1,0 +1,29 @@
+<div class="ui large vertical menu">
+  <% if @at_inbox.present? %>
+    <a class="active violet item" href="/messages">
+      <strong>Inbox</strong>
+      <% if @unread_received_messages > 0 %>
+        <div class="floating ui red label"><%= @unread_received_messages %></div>
+      <% end %>
+    </a>
+    <a class="item" href="/sent_messages">
+      Sent Messages
+      <% if @unread_sent_messages > 0 %>
+        <div class="floating ui red label"><%= @unread_sent_messages %></div>
+      <% end %>
+    </a>
+  <% else %>
+    <a class="item" href="/messages">
+      Inbox
+      <% if @unread_received_messages > 0 %>
+        <div class="floating ui red label"><%= @unread_received_messages %></div>
+      <% end %>
+    </a>
+    <a class="active violet item" href="/sent_messages">
+      <strong>Sent Messages</strong>
+      <% if @unread_sent_messages > 0 %>
+        <div class="floating ui red label"><%= @unread_sent_messages %></div>
+      <% end %>
+    </a>
+  <% end %>
+</div>

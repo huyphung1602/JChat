@@ -11,7 +11,7 @@ class FriendshipsController < ApplicationController
       if @inverse_friendship.present?
         flash[:success] = "Added friend."
       else
-        flash[:success] = "Friend request sent."
+        flash[:success] = "Friend request is sent."
       end
       redirect_to users_path
     else

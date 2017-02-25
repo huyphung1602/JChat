@@ -1,6 +1,6 @@
 module ApplicationHelper
   def semantic_class_for flash_type
-    { success: 'positive message', error: 'negative message', notice: 'warning message'}[flash_type.to_sym]
+    { success: 'positive message', error: 'negative message', notice: 'warning message', info: 'info message'}[flash_type.to_sym]
   end
 
   def flash_messages(opts = {})

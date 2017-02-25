@@ -2,13 +2,13 @@
   <a class="item", href="<%= root_path %>" >
     Home
   </a>
-  <a class="item">
-    Inbox
-  </a>
   <a class="item", href="<%= new_message_path %>">
     New Message
   </a>
-  <a class="item", href="">
+  <a class="item", href="<%= users_path %>">
+    Users
+  </a>
+  <a class="item", href="<%= all_friends_path %>">
     Friends
   </a>
   <% if !signed_in? %>

@@ -5,7 +5,7 @@
     <h1 class="ui center aligned violet header">New Message</h1><br>   
     <%= form_for @message do |f| %>
       <div class="field" >
-        <%= f.select :recipient_id, @users.map{|u| [u.email, u.id]} %>
+        <%= f.text_field :recipient_id, {|u| [u.email, u.id]} %>
       </div>
 
       <div class="field" >

@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    @users = User.all
+    @friends = current_user.inverse_friends
   end
 
   def create

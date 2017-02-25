@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.all
+    @friend_requests = current_user.inverse_friends.all
+  end
+
+  def all_friends
+    @friends = current_user.friends
+  end
+
   def new
     @user = User.new(email: params[:email])
   end

@@ -1,0 +1,62 @@
+<%= flash_messages %>
+
+<h1>Friend request</h1>
+
+<table class="ui violet table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friend_requests.each do |user| %>
+      <% if !user.inverse_friends.find_by_id(current_user.id) %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>People you may know</h1>
+
+<table class="ui violet table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <% if !user.friends.find_by_id(current_user.id) %>
+        <% if user != current_user %>
+          <tr>
+            <td><%= user.name %></td>
+
+            <% if !user.inverse_friends.find_by_id(current_user.id) %>
+              <td><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %></td>
+            <% else %>
+              <td><%= link_to "Cancel friend request", unfriend_path(:friend_id => user), :method => :delete, class: 'ui button' %></td>
+            <% end %>
+
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+</script>

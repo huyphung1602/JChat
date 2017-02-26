@@ -18,8 +18,9 @@
       <table class="ui violet table">
         <thead>
           <tr>
-            <th class="eight wide column">Name</th>
-            <th class="four wide column"></th>
+            <th class="three wide column">Name</th>
+            <th class="three wide column">Email</th>
+            <th class="six wide column"></th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@
             <% if !user.inverse_friends.find_by_id(current_user.id) %>
               <tr>
                 <td><%= user.name %></td>
+                <td><%= user.email %></td>
                 <td class="right aligned">
                   <%= link_to "Accept", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %>
                   <%= link_to "Decline", unfriend_path(:friend_id => user), :method => :delete, class: 'ui negative button' %>
@@ -36,6 +38,13 @@
           <% end %>
         </tbody>
       </table>
+
+      <% if @number_of_friend_requests == 0 %>
+        <div class="ui info message">
+          No friend request
+        </div>
+      <% end %>
+
     </div>
   </div>
 
@@ -54,8 +63,9 @@
       <table class="ui violet table">
         <thead>
           <tr>
-            <th class="nine wide column">Name</th>
-            <th class="three wide column"></th>
+            <th class="three wide column">Name</th>
+            <th class="three wide column">Email</th>
+            <th class="six wide column"></th>
           </tr>
         </thead>
         <tbody>
@@ -64,12 +74,14 @@
               <% if user != current_user %>
                 <tr>
                   <td><%= user.name %></td>
-
-                  <% if !user.inverse_friends.find_by_id(current_user.id) %>
-                    <td class="right aligned"><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %></td>
-                  <% else %>
-                    <td class="right aligned"><%= link_to "Cancel friend request", unfriend_path(:friend_id => user), :method => :delete, class: 'ui button' %></td>
-                  <% end %>
+                  <td><%= user.email %></td>
+                  <td class="right aligned">
+                    <% if !user.inverse_friends.find_by_id(current_user.id) %>
+                      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'ui positive button' %>
+                    <% else %>
+                      <%= link_to "Cancel friend request", unfriend_path(:friend_id => user), :method => :delete, class: 'ui button' %>
+                    <% end %>
+                  </td>
 
                 </tr>
               <% end %>

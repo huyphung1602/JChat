@@ -53,3 +53,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails-assets-semantic', source: 'https://rails-assets.org'
+
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"

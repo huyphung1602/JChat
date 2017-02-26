@@ -38,8 +38,7 @@
                 <td><strong><%= message.subject %></strong></td>
                 <td><strong><%= message.created_at.strftime("%e %b %Y %H:%M%p") %></strong></td>
                 <td><%= link_to 'Unread', message_path(message), 
-                      class: 'ui approve violet button show_modal', 
-                      remote:true %>
+                      class: 'ui approve violet button'%>
                 </td>
               <% end %>
             </tr>
@@ -49,9 +48,7 @@
 
       <% if @messages.empty? %>
         <div class="ui warning message">
-          <div class="header">
-            "Aww! No messages? No friends?"
-          </div>
+          Aww! No messages? No friends?
         </div>
       <% end %>
 
@@ -59,13 +56,9 @@
   </div>
 </div>
 
-<div class="ui small modal" id="message_detail" >
-   
-</div>
-
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $("#message_detail").modal();
   $(".show_modal").click(function() {
     $("#message_detail").modal("show");
   })
-</script>
+</script> -->

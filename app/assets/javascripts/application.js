@@ -12,3 +12,9 @@ $(document).on('turbolinks:load', function(){
     ;
   });
 })
+
+function infoDisplay() {
+  $("#user_detail")
+     .modal('show')
+  ;
+}

@@ -14,7 +14,7 @@
         <div class="floating ui red label"><%= @unread_sent_messages %></div>
       <% end %>
     </a>
-  <% else %>
+  <% elsif @at_sent.present? %>
     <a class="item" href="/messages">
       <i class="inbox icon"></i>
       Inbox
@@ -25,6 +25,21 @@
     <a class="active violet item" href="/sent_messages">
       <i class="send icon"></i>
       <strong>Sent Messages</strong>
+      <% if @unread_sent_messages > 0 %>
+        <div class="floating ui red label"><%= @unread_sent_messages %></div>
+      <% end %>
+    </a>
+  <% else %>
+    <a class="item" href="/messages">
+      <i class="inbox icon"></i>
+      Inbox
+      <% if @unread_received_messages > 0 %>
+        <div class="floating ui red label"><%= @unread_received_messages %></div>
+      <% end %>
+    </a>
+    <a class="item" href="/sent_messages">
+      <i class="send icon"></i>
+      Sent Messages
       <% if @unread_sent_messages > 0 %>
         <div class="floating ui red label"><%= @unread_sent_messages %></div>
       <% end %>

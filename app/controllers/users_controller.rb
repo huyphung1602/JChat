@@ -16,6 +16,10 @@ class UsersController < ApplicationController
         @number_of_friends += 1
       end
     end
+
+    if(params[:user_id])
+      @user = User.all.find(params[:user_id])
+    end
   end
 
   def all_friends
@@ -35,6 +39,10 @@ class UsersController < ApplicationController
         @number_of_friends += 1
       end
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def new

@@ -1,0 +1,34 @@
+<div class="ui grid">
+  <div class="row">
+    <div class="four wide column"></div>
+
+    <div class="twelve wide column">
+      <h1>Message from <%= @message.sender %></h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="four wide column">
+      <%= render 'messages/vertical_menu' %>
+    </div>
+
+    <div class="twelve wide column">
+      <div class="ui violet raised segment">
+        <h3><%= @message.subject %></h3>
+
+        <% if @message.image.present? %>
+          <%= image_tag @message.image.url, class: "ui centered medium rounded image" %>
+        <% end %>
+
+        <p><%= @message.body %></p>
+      </div>
+
+      <%= link_to 'Close', messages_path, class: 'ui black deny button' %>
+      <a class="ui positive right labeled icon button" href="<%= new_message_path(email: @message.sender.email) %>">
+        <i class="reply icon"></i>
+        Reply
+      </a>
+
+    </div>
+  </div>
+</div>

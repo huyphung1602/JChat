@@ -7,14 +7,16 @@ class MessagesController < ApplicationController
   end
 
   def sent_messages
+    @at_sent = true
     @messages = current_user.sent_messages.order("created_at DESC")
     @unread_received_messages = current_user.received_messages.unread.count
     @unread_sent_messages = current_user.sent_messages.unread.count
   end
 
   def show
+    @unread_received_messages = current_user.received_messages.unread.count
+    @unread_sent_messages = current_user.sent_messages.unread.count
     @message = Message.find(params[:id])
-    respond_to :js
     @message.read_at = Time.now
     @message.save!
   end
@@ -36,6 +38,8 @@ class MessagesController < ApplicationController
     end
     @message.subject = params[:subject]
     @message.body = params[:body]
+    @message.image = params[:image]
+
     if @message.save
       flash[:success] = "Message has been sent successfully."
       redirect_to messages_path
@@ -47,6 +51,6 @@ class MessagesController < ApplicationController
 
   private
     def message_params
-      params.require(:message).permit(:recipient_id, :body, :subject)
+      params.require(:message).permit(:recipient_id, :body, :subject, :image)
     end
 end

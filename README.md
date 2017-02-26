@@ -45,6 +45,7 @@ The following **additional** features are implemented:
 * [x] User can send message easily by click on a button next to a friend in friendlist, the email field will
       be filled automatically.
 * [x] Side menu show how many friend request, how many friends in friendlist.
+* [x] User can check sent message if it is read or not, its recipient and subject but cannot see the body
 
 ## Video Walkthrough 
 
@@ -57,10 +58,13 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+* I use semantic this time because I think it look nice. I spend many hours to understand it.
+* The friendship functions take me a lot of hours but I understand it clearly now.
+* I make the UI simple but still beautiful and friendly with the users.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2017 HuyPhung
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

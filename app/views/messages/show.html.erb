@@ -9,7 +9,9 @@
 
   <div class="row">
     <div class="four wide column">
-      <%= render 'messages/vertical_menu' %>
+      <%= render 'messages/vertical_menu',
+          unread_received_messages: @unread_received_messages,
+          unread_sent_messages: @unread_sent_messages %>
     </div>
 
     <div class="twelve wide column">

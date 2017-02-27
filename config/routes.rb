@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'all_friends' => 'users#all_friends'
   delete 'unfriend' => 'friendships#destroy'
   get 'sent_messages' => 'messages#sent_messages'
+  get 'auth/:provider/callback' => 'sessions#callback'
 end

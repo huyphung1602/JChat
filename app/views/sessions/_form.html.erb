@@ -9,5 +9,9 @@
   <%= submit_tag "Sign In", class: 'ui green button', data: {disable_with: "Signing in..."} %>
   <% if @sign_up_button.present? %>
     <%= link_to 'Sign Up', new_user_path, class: 'ui violet right button' %>
+    <a class="ui facebook button" href="/auth/facebook">
+      <i class="facebook icon"></i>
+      Sign in with Facebook
+    </a>
   <% end %>
 <% end %>
